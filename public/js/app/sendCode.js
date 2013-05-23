@@ -46,9 +46,8 @@ $(document).ready(function() {
 
 	uploadInput.on('change', function(e) {
 		var opts = {
-			success: function(e) {
-				jsInput.val(e);
-			}
+			success: handleUploadResponse,
+			error: handleUploadResponse
 		}
 
 		fileForm.ajaxSubmit(opts);
@@ -67,5 +66,11 @@ $(document).ready(function() {
 		jsInput.val(target.data('js'));
 		nameInput.val(target.data('name'));
 	};
+
+	function handleUploadResponse(e) {
+		jsInput.val(e.error ? '<' + e.responseText + '>' : e);
+		nameInput.val(uploadInput.val());
+		uploadInput.val('');
+	}
 });
 
