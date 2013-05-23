@@ -1,0 +1,103 @@
+@inputHeight: 23px;
+@borderGray: #D6D6D6;
+
+body {
+	background: #EFEFEF;
+	padding: 40px;
+	font-family: san-serif;
+
+	h1 {
+		color: #636363;
+		font-size: 21px;
+		font-weight: 300;
+		border-bottom: 1px solid @borderGray;
+		display: inline-block;
+	}
+
+	div {
+		margin-bottom: 15px;
+		overflow: auto;
+	}
+
+	.pull-left {
+		float: left;
+	}
+
+	.pull-right {
+		float: right;
+	}
+
+	.hide {
+		display: none;
+	}
+
+	.content-div {
+		width: 500px;
+		height: 409px;
+	}
+
+	.blue-button {
+		background: #82a5e9; /* Old browsers */
+		background: -moz-linear-gradient(top, #82a5e9 0%, #2a67dc 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#82a5e9), color-stop(100%,#2a67dc)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #82a5e9 0%,#2a67dc 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #82a5e9 0%,#2a67dc 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top, #82a5e9 0%,#2a67dc 100%); /* IE10+ */
+		background: linear-gradient(to bottom, #82a5e9 0%,#2a67dc 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#82a5e9', endColorstr='#2a67dc',GradientType=0 ); /* IE6-9 */
+
+		-moz-box-shadow:    inset 0 8px 5px -7px #000000;
+		-webkit-box-shadow: inset 0 8px 5px -7px #000000;
+		box-shadow:         inset 0 8px 5px -7px #000000;
+
+		color: #FFFFFF;
+		font-weight: 600;
+		font-size: 12px;
+		height: @inputHeight;
+		padding-left: 13px;
+		padding-right: 13px;
+		border-radius: 10px;
+		border: 0;
+		width: 100px;
+		margin-left: 20px;
+	}
+
+	.snippet-name {
+		height: @inputHeight;
+		font-size: 16px;
+		width: 312px;
+	}
+
+	.big-area {
+		height: 125px;
+		width: 100%;
+		resize: none;
+	}
+
+	.saved-snippets {
+		border: 1px solid @borderGray;
+		height: 339px;
+		background: #F5F9FC;
+
+		> .snippet-list {
+			padding: 0;
+			-webkit-margin-before: 0;
+			-webkit-margin-after: 0;
+			list-style-type: none;
+
+			> li {
+				padding: 5px;
+				font-family: sans-serif;
+				border-bottom: 1px solid #E5F0F6;
+
+				&:nth-child(odd) {
+					background: #E5F0F6;
+				}
+
+				&.selected {
+					background: #82A5E9;
+				}
+			}
+		}
+	}	
+}

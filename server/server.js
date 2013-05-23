@@ -1,12 +1,11 @@
 var http = require('http'),
 	url = require('url'),
-	fs = require('fs'),
 	static = require('node-static');
 
 var webroot = '../public',
 	routes = {
-		INDEX: '/',
-		EXECUTE: '/execute'
+		EXECUTE: '/execute',
+		UPLOAD: '/upload'
 	},
 	statuses = {
 		OK: 200,
@@ -24,44 +23,52 @@ function onRequest(request, response) {
 	var data = '';
 
 	request.on('data', function(chunk) {
-		console.log('Received body data: ' + chunk.toString());
 		data += chunk.toString();
 	});
 
 	request.on('end', function() {
 		if (request.url === routes.EXECUTE) {
 			if (request.method === methods.POST) {
-				console.log(request.url + ' ' + statuses.OK)
 				response.writeHead(statuses.OK, {
 					'Content Type': 'text/plain'
 				});
 				try {
 					var evaluation = eval(data);
-					response.write(evaluation.toString());	
+					response.write(evaluation ? evaluation.toString() : '<No output>');	
 				} 
 				catch(e) {
 					response.write(e.toString());
 				}
 			} 
 			else {
-				console.log(request.url + ' ' + statuses.METHOD_NOT_ALLOWED)
 				response.writeHead(statuses.METHOD_NOT_ALLOWED, {
 					'Content Type': 'text/plain'
 				});
-				response.write('405: Method not allowed');	
+				response.write('405: Method not allowed');
+			}
+			response.end();
+		}
+		else if (request.url === routes.UPLOAD) {
+			if (request.method === methods.POST) {
+				response.writeHead(statuses.OK, {
+					'Content Type': 'text/plain'
+				});
+				response.write('File upload not implemented yet.');
+			}
+			else {
+				response.writeHead(statuses.METHOD_NOT_ALLOWED, {
+					'Content Type': 'text/plain'
+				});
+				response.write('405: Method not allowed');
 			}
 			response.end();
 		}
 		else {
 			file.serve(request, response, function(error, result) {
 				if (error) {
-					console.log(request.url + ' ' + error.status);
 					response.writeHead(error.status, error.headers);
 					response.write(error.status + ': ' + error.message);
 					response.end();
-				}
-				else {
-					console.log(request.url + ' ' + result.status);
 				}
 			});
 		}
@@ -69,4 +76,3 @@ function onRequest(request, response) {
 }
 
 http.createServer(onRequest).listen(8080);
-console.log('Server has started');

@@ -2,13 +2,37 @@
 <head>
 	<title>Javascript Testbed</title>
 	<script src="js/lib/jquery.js"></script>
+	<script src="js/lib/jquery.form.js"></script>
 	<script src="js/app/sendCode.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/content.css"/>
 </head>
 <body>
-	Input:<br/>
-	<textarea class="input" cols=100 rows=10></textarea><br/>
-	<button class="submit">Submit</button><br/>
-	Output:<br/>
-	<textarea class="output" cols=100 rows=10 disabled></textarea>
+	<div class="content-div pull-left">
+		<h1>Javascript Upload & Management</h1>
+		<div>
+			<input class="snippet-name" type="text" placeholder="Name Snippet"/>
+			<button class="blue-button pull-right upload-button">Upload File</button>
+		</div>
+		<div>
+			<textarea class="big-area js-input"></textarea>
+		</div>
+		<div>
+			<button class="blue-button pull-right save">Save</button>
+			<button class="blue-button pull-right run">Run</button>
+		</div>
+		<div>
+			<textarea class="big-area js-output"></textarea>
+		</div>
+	</div>
+	<div class="content-div pull-right">
+		<h1>List of Javascript Snippets</h1>
+		<div class="saved-snippets">
+			<ul class="snippet-list"></ul>
+		</div>
+	</div>
+
+	<form class="file-form hide" action="/upload" method="post" enctype="multipart/form-data">
+		<input name="upload-input" type="file" class="upload-input"/>
+	</form>
 </body>
 </html>
