@@ -4,30 +4,50 @@
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/jquery.form.js"></script>
 	<script src="js/app/sendCode.js"></script>
+	<script src="js/app/tabHandler.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/content.css"/>
 </head>
 <body>
-	<div class="content-div pull-left">
-		<h1>Javascript Upload & Management</h1>
-		<div>
-			<input class="snippet-name" type="text" placeholder="Name Snippet"/>
-			<button class="blue-button pull-right upload-button">Upload File</button>
-		</div>
-		<div>
-			<textarea class="big-area js-input"></textarea>
-		</div>
-		<div>
-			<button class="blue-button pull-right save">Save</button>
-			<button class="blue-button pull-right run">Run</button>
-		</div>
-		<div>
-			<textarea class="big-area js-output"></textarea>
-		</div>
+	<div class="tabs">
+		<div class="tab active" data-toggle="app"><div>Applications</div></div>
+		<div class="tab" data-toggle="sites"><div>Hosted Sites</div></div>
+		<div class="tab" data-toggle="account"><div>Account</div></div>
 	</div>
-	<div class="content-div pull-right">
-		<h1>List of Javascript Snippets</h1>
-		<div class="saved-snippets">
-			<ul class="snippet-list"></ul>
+	<div class="tab-container">
+		<div class="app">
+			<div class="content-div pull-left">
+				<h1>Javascript Upload & Management</h1>
+				<div>
+					<input class="snippet-name" type="text" placeholder="Name Snippet"/>
+					<button class="blue-button pull-right upload-button">Upload File</button>
+				</div>
+				<div>
+					<textarea class="big-area js-input"></textarea>
+				</div>
+				<div>
+					<button class="blue-button pull-right save">Save</button>
+					<button class="blue-button pull-right run">Run</button>
+				</div>
+				<div>
+					<textarea class="big-area js-output"></textarea>
+				</div>
+			</div>
+			<div class="content-div pull-right">
+				<h1>List of Javascript Snippets</h1>
+				<div class="saved-snippets">
+					<ul class="snippet-list"></ul>
+				</div>
+			</div>
+		</div>
+		<div class="hide sites">
+			<div class="content-div pull-left">
+				<h1>Hosted Sites</h1>
+			</div>
+		</div>
+		<div class="hide account">
+			<div class="content-div pull-left">
+				<h1>Account</h1>
+			</div>
 		</div>
 	</div>
 
