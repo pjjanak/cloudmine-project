@@ -21,10 +21,7 @@ var webroot = '../public',
 	types = {
 		JAVASCRIPT: 'application/x-javascript',
 		PLAINTEXT: 'text/plain'
-	}
-	file = new(static.Server)(webroot, {
-		cache: 600
-	});
+	};
 
 function onRequest(request, response) {
 	if (request.url === routes.UPLOAD) {
@@ -94,6 +91,10 @@ function handleExecuteRequest(request, response) {
 }
 
 function handleStaticRequest(request, response) {
+	var	file = new(static.Server)(webroot, {
+		cache: 600
+	});
+
 	file.serve(request, response, function(error, result) {
 		if (error) {
 			response.writeHead(error.status, error.headers);

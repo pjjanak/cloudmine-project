@@ -1,12 +1,6 @@
 $(document).ready(function() {
 	var jsInput = $('.js-input'),
-		jsOutput = $('.js-output'),
-		nameInput = $('.snippet-name'),
-		snippetList = $('.snippet-list'),
-		uploadButton = $('.upload-button'),
-		uploadInput = $('.upload-input'),
-		fileForm = $('.file-form'),
-		selectedSnippet = null;
+		jsOutput = $('.js-output');
 
 	$('.run').on('click', function(e) {
 		e.preventDefault();
@@ -22,55 +16,5 @@ $(document).ready(function() {
 			});
 		}
 	});
-
-	$('.save').on('click', function(e) {
-		e.preventDefault();
-
-		var js = jsInput.val(),
-			name = nameInput.val() ? nameInput.val() : '<i>No Name</i>';
-
-		if (js) {
-			var newSnip = $('<li class="snippet">' + name + '</li>');
-
-			newSnip.on('click', handleSnipClip);
-			newSnip.data('js', js);
-			newSnip.data('name', name === '<i>No Name</i>' ? 'No Name' : name);
-
-			snippetList.append(newSnip);
-		}
-	});
-
-	uploadButton.on('click', function(e) {
-		uploadInput.trigger('click');
-	});
-
-	uploadInput.on('change', function(e) {
-		var opts = {
-			success: handleUploadResponse,
-			error: handleUploadResponse
-		}
-
-		fileForm.ajaxSubmit(opts);
-	});
-
-	function handleSnipClip(e) {
-		var target = $(e.target);
-
-		if (selectedSnippet) {
-			selectedSnippet.removeClass('selected');
-		}
-
-		target.addClass('selected');
-		selectedSnippet = target;
-
-		jsInput.val(target.data('js'));
-		nameInput.val(target.data('name'));
-	};
-
-	function handleUploadResponse(e) {
-		jsInput.val(e.error ? '<' + e.responseText + '>' : e);
-		nameInput.val(uploadInput.val());
-		uploadInput.val('');
-	}
 });
 
