@@ -38,7 +38,7 @@ The server was built on nodejs. It accepts three types of requests:
 
 To manage the static file requests I'm using a node module called [static](https://github.com/cloudhead/node-static). I pass the request into its serve method and it handles the work of locating the files based on a webroot and passing them into the response.
 
-For Javascript execution, I take in the request and evaluate it using Javascript's `eval` method. I store the output in a variable and attempt to write it into the response. If no return value was given for the execution, the server writes &gt;No output&lt; into the response.
+For Javascript execution, I take in the request and evaluate it using Javascript's `eval` method. I store the output in a variable and attempt to write it into the response. If no return value was given for the execution, the server writes &lt;No output&gt; into the response.
 
 To handle file uploads I'm using another node module called [formidable](https://github.com/felixge/node-formidable). I pass any multipart form request through formidable's parse method. This reads in any file and saves it locally to the server. I then use the node module fs, part of the standard installation of node, to read back that file and write its contents into the response. If the file is not one of the types accepted by the server (either Javascript or text at this point), the server responds with a 415, unsupported media type, error code.
 
